@@ -1,0 +1,27 @@
+Date: 17.08.24
+
+class Solution {
+    // Function to select the minimum element from the unsorted part of the array
+    int select(int arr[], int i) {
+        int minIndex = i; // Assume the first element is the minimum
+        for (int j = i + 1; j < arr.length; j++) { // Find the minimum element in the remaining array
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        return minIndex; // Return the index of the minimum element
+    }
+
+    // Function to perform selection sort
+    void selectionSort(int arr[], int n) {
+        for (int i = 0; i < n - 1; i++) {
+            // Select the minimum element in the unsorted part of the array
+            int minIndex = select(arr, i);
+            
+            // Swap the found minimum element with the first element of the unsorted part
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
+}
