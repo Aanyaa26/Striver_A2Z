@@ -1,1 +1,19 @@
+Date: 17.08.24
 
+class Solution {
+    // Function to sort the array using the insertion sort algorithm
+    public void insertionSort(int arr[], int n) {
+        for (int i = 1; i < n; i++) {  // Start from the second element (index 1)
+            int key = arr[i];  // Store the current element
+            int j = i - 1;
+            
+            // Move elements of arr[0..i-1], that are greater than key,
+            // to one position ahead of their current position
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;  // Place the key in its correct position
+        }
+    }
+}
