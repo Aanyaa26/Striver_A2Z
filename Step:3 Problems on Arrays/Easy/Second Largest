@@ -1,0 +1,49 @@
+Date: 24.08.24
+
+APPROACH 1:
+WITH SORTING
+
+class Solution {
+    public int print2largest(int[] arr) {
+    Set<Integer> set = new HashSet<>();
+    for (int num : arr) {
+            set.add(num);
+        }
+    int[] ans = new int[set.size()];
+        int i = 0;
+        for (int num : set) {
+            ans[i++] = num;
+        }
+    Arrays.sort(ans);
+    return ans[ans.length-2];
+
+    }
+}
+
+APPROACH 2
+WITHOUT SORTING
+
+if (arr == null || arr.length < 2) {
+            return -1;
+        }
+
+        // Initialize first and second to minimum possible value
+        int first = Integer.MIN_VALUE;
+        int second = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            // Ignore if the number is equal to the largest
+            if (num == first) continue;
+
+            // Update first and second accordingly
+            if (num > first) {
+                second = first;  // Update second largest before changing first
+                first = num;
+            } else if (num > second) {
+                second = num;
+            }
+        }
+
+        // If second largest hasn't changed, return -1
+        return second == Integer.MIN_VALUE ? -1 : second;
+    }
