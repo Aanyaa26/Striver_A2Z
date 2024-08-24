@@ -1,0 +1,21 @@
+Date: 24.08.24
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        int[] ans = new int[n];  // Temporary array to store rotated values
+        k = k % n;  // Handle cases where k > n
+        
+        // Fill the ans array with rotated values
+        for (int i = 0; i < n; i++) {
+            ans[(i + k) % n] = nums[i];  // Apply the rotation formula
+        }
+        
+        // Copy the rotated values back to the original array
+        for (int i = 0; i < n; i++) {
+            nums[i] = ans[i];
+        }
+    }
+}
+
+
