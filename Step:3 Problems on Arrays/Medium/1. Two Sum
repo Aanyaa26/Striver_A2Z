@@ -7,7 +7,7 @@ class Solution {
         for(int j=i+1; j<nums.length; j++){
             
             result[0]=i;
-            result[1]=j;
+            result[1]=j; 
             if(target== nums[i]+nums[j]){
                 return result;
             }
