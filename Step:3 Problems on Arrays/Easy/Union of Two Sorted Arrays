@@ -1,0 +1,81 @@
+Date: 26.08.24
+
+BRUT FORCE- HASHSET
+class Solution {
+    public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m) {
+        HashSet<Integer> set = new HashSet<>();
+        
+        // Add elements of arr1 to the set
+        for (int i = 0; i < n; i++) {
+            set.add(arr1[i]);
+        }
+        
+        // Add elements of arr2 to the set
+        for (int i = 0; i < m; i++) {
+            set.add(arr2[i]);
+        }
+        
+        // Convert the set to a sorted ArrayList
+        ArrayList<Integer> result = new ArrayList<>(set);
+        result.sort(null);  // Sort the list
+        
+        return result;
+    }
+}
+
+
+OPTIMISED - TWO POINTER APPROACH
+class Solution {
+    public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int i = 0, j = 0;
+        
+        // Traverse both arrays
+        while (i < n && j < m) {
+            // Skip duplicates in arr1
+            while (i > 0 && i < n && arr1[i] == arr1[i - 1]) {
+                i++;
+            }
+            // Skip duplicates in arr2
+            while (j > 0 && j < m && arr2[j] == arr2[j - 1]) {
+                j++;
+            }
+            
+            if (i >= n || j >= m) break;
+            
+            if (arr1[i] < arr2[j]) {
+                result.add(arr1[i]);
+                i++;
+            } else if (arr1[i] > arr2[j]) {
+                result.add(arr2[j]);
+                j++;
+            } else {  // arr1[i] == arr2[j]
+                result.add(arr1[i]);
+                i++;
+                j++;
+            }
+        }
+        
+        // Add remaining elements from arr1
+        while (i < n) {
+            if (i == 0 || arr1[i] != arr1[i - 1]) {
+                result.add(arr1[i]);
+            }
+            i++;
+        }
+        
+        // Add remaining elements from arr2
+        while (j < m) {
+            if (j == 0 || arr2[j] != arr2[j - 1]) {
+                result.add(arr2[j]);
+            }
+            j++;
+        }
+        
+        return result;
+    }
+}
+
+
+
+
