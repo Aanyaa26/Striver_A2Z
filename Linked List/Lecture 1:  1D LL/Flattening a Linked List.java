@@ -7,7 +7,7 @@ class Node {
     Node next;
     Node bottom;
 
-    Node(int x) {
+    Node(int x) { 
         data = x;
         next = null;
         bottom = null;
